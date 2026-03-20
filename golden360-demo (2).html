@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden 360 IQQ — Cabina 360 · Cabina de Fotos · Robots LED · Cabezones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==============================================
+   DESIGN TOKENS — Nácar Dorado & Blanco
+   ============================================== */
+:root {
+  /* Fondos */
+  --ink:   #FDFAF5;
+  --ink2:  #F5F0E8;
+  --ink3:  #EDE6D8;
+
+  /* Nácar dorado — gradiente iridiscente */
+  --g1: #D4721A;   /* dorado cálido */
+  --g2: #E8921F;   /* nácar claro */
+  --g3: #F5AE52;   /* champagne */
+  --g4: #B85C0E;   /* ámbar profundo */
+
+  /* Blanco nácar */
+  --w1: #1A1410;   /* blanco cálido puro */
+  --w2: #3D2E1E;   /* marfil suave */
+  --w3: #8A7560;   /* lino apagado */
+
+  /* Gradiente nacarado principal */
+  --nacar:      linear-gradient(135deg, #B85C0E 0%, #D4721A 30%, #E8921F 55%, #F5AE52 75%, #E8921F 100%);
+  --nacar-text: linear-gradient(110deg, #B85C0E 0%, #D4721A 35%, #E8921F 60%, #F5AE52 85%);
+  --nacar-subtle: linear-gradient(135deg, rgba(212,114,26,.08) 0%, rgba(232,146,31,.04) 50%, rgba(184,92,14,.06) 100%);
+
+  /* Tipografías */
+  --serif:  'Cormorant', Georgia, serif;
+  --sans:   'Montserrat', sans-serif;
+
+  /* Espaciados */
+  --nav-h: 72px;
+  --ease:  cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ==============================================
+   RESET & BASE
+   ============================================== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  background: #FFFFFF;
+  color: var(--w1);
+  font-family: var(--sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: #E8E0D0; }
+::-webkit-scrollbar-thumb { background: var(--g1); }
+
+/* Grain de película sobre todo */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9000;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23f)' opacity='1'/%3E%3C/svg%3E");
+  opacity: .015;
+}
+
+/* Texto nacarado reutilizable */
+.nacar {
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==============================================
+   NAVEGACIÓN
+   ============================================== */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  padding: 0 56px;
+  transition: background .5s, box-shadow .5s;
+}
+#nav.filled {
+  background: rgba(253,250,245,.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(212,114,26,.12);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-main {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #1A1410;
+  white-space: nowrap;
+}
+.logo-main span {
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.logo-sub {
+  font-family: var(--sans);
+  font-size: 7.5px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--w3);
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* Links centrados */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+  margin: 0 auto;
+}
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(26,20,16,.45);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color .3s;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--nacar);
+  transition: width .35s var(--ease);
+}
+.nav-links a:hover { color: var(--g2); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Botón cotizar */
+.nav-cta {
+  flex-shrink: 0;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--nacar);
+  border: none;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: opacity .3s, transform .25s;
+}
+.nav-cta:hover { opacity: .85; transform: translateY(-1px); }
+
+/* Hamburguesa */
+.nav-hbg {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+.nav-hbg span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--w2);
+  transition: .4s;
+  transform-origin: center;
+}
+.nav-hbg.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hbg.open span:nth-child(2) { opacity: 0; }
+.nav-hbg.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Drawer móvil */
+.drawer {
+  position: fixed; inset: 0; z-index: 490;
+  background: rgba(253,250,245,.99);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s;
+}
+.drawer.open { opacity: 1; pointer-events: all; }
+.drawer a {
+  font-family: var(--serif);
+  font-size: clamp(36px, 8vw, 60px);
+  font-weight: 400;
+  letter-spacing: 6px;
+  text-decoration: none;
+  color: var(--w1);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: color .3s, opacity .5s var(--ease), transform .5s var(--ease);
+}
+.drawer.open a { opacity: 1; transform: translateY(0); }
+.drawer.open a:nth-child(1) { transition-delay: .05s; }
+.drawer.open a:nth-child(2) { transition-delay: .10s; }
+.drawer.open a:nth-child(3) { transition-delay: .15s; }
+.drawer.open a:nth-child(4) { transition-delay: .20s; }
+.drawer.open a:nth-child(5) { transition-delay: .25s; }
+.drawer a:hover { color: var(--g2); }
+
+/* ==============================================
+   HERO
+   ============================================== */
+#inicio {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Luz ambiental */
+#inicio::after {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(212,114,26,.06) 0%,
+    rgba(245,174,82,.03) 40%,
+    transparent 70%);
+  top: 50%; right: 0;
+  transform: translate(20%, -50%);
+  pointer-events: none;
+}
+
+/* Columna izquierda */
+.hero-left {
+  position: relative; z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px 80px 72px;
+  background: #FFFFFF;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  top: 20%; right: 0; bottom: 20%;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    transparent,
+    rgba(212,114,26,.35),
+    transparent);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--g1);
+  margin-bottom: 44px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .7s, transform .7s var(--ease);
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: linear-gradient(to right, var(--g4), var(--g2));
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(48px, 6.5vw, 88px);
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: #1A1410;
+  overflow: hidden;
+}
+.hero-title .ln {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1.1s var(--ease);
+}
+.hero-title .ln-italic {
+  font-style: italic;
+  font-weight: 300;
+}
+.hero-title .ln-nacar {
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-divider {
+  width: 48px; height: 1px;
+  background: linear-gradient(to right, var(--g4), var(--g2), transparent);
+  margin: 36px 0;
+  opacity: 0;
+  transition: opacity .8s .6s;
+}
+
+.hero-sub {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(26,20,16,.42);
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .8s .7s, transform .8s .7s var(--ease);
+}
+.hero-sub strong { color: var(--w2); font-weight: 400; }
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .8s .9s, transform .8s .9s var(--ease);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 36px;
+  background: var(--nacar);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, opacity .25s;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,.15);
+  transform: translateX(-110%) skewX(-20deg);
+  transition: transform .6s var(--ease);
+}
+.btn-primary:hover::before { transform: translateX(110%) skewX(-20deg); }
+.btn-primary:hover { transform: translateY(-2px); opacity: .9; }
+
+.btn-secondary {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(26,20,16,.45);
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(250,248,242,.2);
+  padding-bottom: 3px;
+  cursor: pointer;
+  transition: color .3s, border-color .3s;
+}
+.btn-secondary:hover { color: var(--g2); border-color: var(--g2); }
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(212,114,26,.12);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .8s 1.1s, transform .8s 1.1s var(--ease);
+}
+.stat-n {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-l {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--w3);
+  margin-top: 5px;
+}
+
+/* Columna derecha — panel artístico */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  background: #E8E0D0;
+}
+
+.hero-art {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Anillos orbitantes */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ring-1 {
+  width: 560px; height: 560px;
+  border: 1px solid rgba(212,114,26,.07);
+  animation: spin 60s linear infinite;
+}
+.ring-2 {
+  width: 400px; height: 400px;
+  border: 1px dashed rgba(212,114,26,.13);
+  animation: spin 35s linear infinite reverse;
+}
+.ring-3 {
+  width: 258px; height: 258px;
+  border: 1px solid rgba(212,114,26,.22);
+  animation: spin 20s linear infinite;
+}
+@keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+/* Medallón central */
+.medallion {
+  position: relative; z-index: 2;
+  width: 190px; height: 190px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,114,26,.28);
+  background: radial-gradient(circle at 40% 35%,
+    rgba(212,114,26,.1),
+    rgba(245,174,82,.04) 50%,
+    transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 60px rgba(212,114,26,.06),
+    inset 0 0 30px rgba(212,114,26,.04);
+}
+.med-num {
+  font-family: var(--serif);
+  font-size: 60px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.med-sup {
+  font-size: 20px;
+  vertical-align: super;
+}
+.med-lbl {
+  font-family: var(--sans);
+  font-size: 7px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--g4);
+  margin-top: 6px;
+}
+
+/* Tarjetas flotantes de servicio */
+.svc-card {
+  position: absolute;
+  background: rgba(26,24,19,.85);
+  border: 1px solid rgba(212,114,26,.18);
+  backdrop-filter: blur(8px);
+  padding: 18px 22px;
+  min-width: 130px;
+  transition: transform .5s var(--ease);
+}
+.svc-card:hover { transform: scale(1.03) !important; }
+.svc-card-icon {
+  width: 28px; height: 28px;
+  border: 1px solid rgba(212,114,26,.3);
+  background: linear-gradient(135deg, rgba(212,114,26,.1), rgba(245,174,82,.05));
+  margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Iconos SVG dentro de las tarjetas */
+.svc-card-icon svg {
+  width: 14px; height: 14px;
+  stroke: var(--g1);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.svc-card-name {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--g2);
+  margin-bottom: 3px;
+}
+.svc-card-desc {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: rgba(250,248,242,.35);
+  line-height: 1.5;
+}
+
+.sc-tl { top: 14%; left: 5%;  transform: rotate(-2deg); }
+.sc-tr { top: 8%;  right: 8%; transform: rotate(2deg); }
+.sc-bl { bottom: 16%; left: 18%; transform: rotate(-1.5deg); }
+.sc-br { bottom: 22%; right: 5%; transform: rotate(2.5deg); }
+
+.hero-corner {
+  position: absolute;
+  bottom: 32px; right: 32px;
+  font-family: var(--sans);
+  font-size: 7px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(212,114,26,.3);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* ==============================================
+   BANDA NACARADA
+   ============================================== */
+.band {
+  position: relative;
+  overflow: hidden;
+  padding: 18px 0;
+  background: var(--nacar);
+}
+.band-track {
+  display: flex;
+  white-space: nowrap;
+  animation: slide 24s linear infinite;
+}
+.band-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 32px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.band-sep {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(12,11,9,.3);
+  flex-shrink: 0;
+}
+@keyframes slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ==============================================
+   SECCIONES — BASE
+   ============================================== */
+.section-wrap { max-width: 1220px; margin: 0 auto; padding: 0 64px; }
+
+.s-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--g1);
+  margin-bottom: 20px;
+}
+.s-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: linear-gradient(to right, var(--g4), var(--g2));
+}
+
+.s-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1.1;
+  color: #1A1410;
+  letter-spacing: -.3px;
+}
+.s-title em {
+  font-style: italic;
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.s-bar {
+  width: 44px; height: 1px;
+  background: var(--nacar);
+  margin: 28px 0;
+}
+
+.s-body {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(26,20,16,.42);
+}
+
+/* Reveal on scroll */
+.rv {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+}
+.rv.in { opacity: 1; transform: translateY(0); }
+.rv.d1 { transition-delay: .12s; }
+.rv.d2 { transition-delay: .24s; }
+.rv.d3 { transition-delay: .36s; }
+.rv.d4 { transition-delay: .48s; }
+
+/* ==============================================
+   SERVICIOS
+   ============================================== */
+#servicios {
+  padding: 130px 0;
+  background: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Texto de fondo decorativo */
+#servicios::after {
+  content: 'GOLDEN';
+  position: absolute;
+  bottom: -40px; right: -20px;
+  font-family: var(--serif);
+  font-size: 280px;
+  font-weight: 600;
+  color: rgba(250,248,242,.013);
+  letter-spacing: -10px;
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.srv-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 72px;
+}
+
+/* Grid de 4 servicios */
+.srv-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(212,114,26,.1);
+  border: 1px solid rgba(212,114,26,.12);
+}
+
+.srv-item {
+  background: #FFFFFF;
+  padding: 48px 36px 44px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  box-shadow: 0 1px 0 rgba(212,114,26,.08);
+  transition: background .45s, box-shadow .45s;
+  display: flex;
+  flex-direction: column;
+}
+.srv-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--nacar);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s var(--ease);
+}
+.srv-item:hover { background: #E8E0D0; }
+.srv-item:hover::before { transform: scaleX(1); }
+
+/* Número de fondo */
+.srv-num {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: var(--serif);
+  font-size: 60px;
+  font-weight: 600;
+  color: rgba(212,114,26,.05);
+  line-height: 1;
+  transition: color .45s;
+}
+.srv-item:hover .srv-num { color: rgba(212,114,26,.12); }
+
+/* Icono del servicio */
+.srv-icon {
+  width: 48px; height: 48px;
+  border: 1px solid rgba(212,114,26,.2);
+  background: linear-gradient(135deg,
+    rgba(212,114,26,.08),
+    rgba(245,174,82,.03));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  transition: border-color .45s, background .45s;
+}
+.srv-item:hover .srv-icon {
+  border-color: rgba(212,114,26,.45);
+  background: linear-gradient(135deg, rgba(212,114,26,.15), rgba(245,174,82,.06));
+}
+.srv-icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--g1);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.srv-badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 7px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--g1);
+  border: 1px solid rgba(212,114,26,.25);
+  padding: 4px 12px;
+  margin-bottom: 18px;
+  align-self: flex-start;
+}
+
+.srv-name {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: #1A1410;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.srv-desc {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.95;
+  color: rgba(26,20,16,.38);
+  flex: 1;
+}
+
+.srv-features {
+  list-style: none;
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.srv-features li {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  color: rgba(26,20,16,.45);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: .5px;
+}
+.srv-features li::before {
+  content: '';
+  width: 14px; height: 1px;
+  background: linear-gradient(to right, var(--g4), var(--g2));
+  flex-shrink: 0;
+}
+
+.srv-cta {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--g1);
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(212,114,26,.2);
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: color .3s, border-color .3s;
+  align-self: flex-start;
+}
+.srv-cta svg {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  transition: transform .3s;
+}
+.srv-cta:hover { color: var(--g3); border-color: rgba(212,114,26,.5); }
+.srv-cta:hover svg { transform: translateX(4px); }
+
+/* ==============================================
+   GALERÍA
+   ============================================== */
+#galeria {
+  padding: 120px 0;
+  background: #E8E0D0;
+}
+
+.gal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 52px;
+}
+.gal-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(250,248,242,.35);
+  max-width: 260px;
+  text-align: right;
+}
+
+/* Mosaico asimétrico */
+.mosaic {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 340px 220px;
+  gap: 2px;
+}
+
+.mc {
+  position: relative;
+  overflow: hidden;
+  background: #E8E0D0;
+  border: 1px solid rgba(212,114,26,.06);
+  cursor: pointer;
+  transition: border-color .4s;
+}
+.mc:hover { border-color: rgba(212,114,26,.35); }
+.mc.tall { grid-row: 1 / 3; }
+
+/* Contenido visual de cada celda */
+.mc-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #EDE6D8, #E0D8C8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icono SVG decorativo en cada celda */
+.mc-icon {
+  width: 64px; height: 64px;
+  opacity: .12;
+  transition: opacity .4s;
+}
+.mc.tall .mc-icon { width: 110px; height: 110px; }
+.mc:hover .mc-icon { opacity: .22; }
+.mc-icon svg {
+  width: 100%; height: 100%;
+  stroke: var(--g1);
+  fill: none;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Overlay oscuro desde abajo */
+.mc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12,11,9,.92) 0%, transparent 55%);
+}
+
+/* Play hover */
+.mc-play {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: rgba(12,11,9,.2);
+  transition: opacity .35s;
+}
+.mc:hover .mc-play { opacity: 1; }
+.play-ring {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,114,26,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.play-ring svg {
+  width: 16px; height: 16px;
+  fill: var(--g2);
+  margin-left: 3px;
+}
+
+/* Info de la celda */
+.mc-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  padding: 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.mc-title {
+  font-family: var(--serif);
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--w1);
+  line-height: 1.25;
+}
+.mc-tag {
+  font-family: var(--sans);
+  font-size: 7.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--g2);
+  border: 1px solid rgba(212,114,26,.3);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* Miniaturas */
+.thumbs-row {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.thumbs-row::-webkit-scrollbar { display: none; }
+.thumb {
+  flex-shrink: 0;
+  width: 116px; height: 72px;
+  background: #E8E0D0;
+  border: 1px solid rgba(212,114,26,.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.thumb:hover { border-color: rgba(212,114,26,.4); }
+.thumb-icon {
+  width: 28px; height: 28px;
+  opacity: .18;
+  transition: opacity .3s;
+}
+.thumb:hover .thumb-icon { opacity: .35; }
+.thumb-icon svg {
+  width: 100%; height: 100%;
+  stroke: var(--g1);
+  fill: none;
+  stroke-width: 1;
+}
+.thumb::after {
+  content: attr(data-t);
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  font-family: var(--sans);
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 4px;
+  background: rgba(12,11,9,.8);
+  color: var(--g2);
+}
+
+/* ==============================================
+   BODAS
+   ============================================== */
+#bodas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 88vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Panel izquierdo oscuro */
+.bodas-left { /* dark contrast panel */
+  background: #FFFFFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 60px;
+}
+
+/* Anillos decorativos */
+.b-rings {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.b-ring {
+  position: absolute;
+  border-radius: 50%;
+}
+.b-ring:nth-child(1) { width: 500px; height: 500px; border: 1px solid rgba(212,114,26,.06); }
+.b-ring:nth-child(2) { width: 360px; height: 360px; border: 1px dashed rgba(212,114,26,.1); animation: spin 28s linear infinite; }
+.b-ring:nth-child(3) { width: 220px; height: 220px; border: 1px solid rgba(212,114,26,.18); }
+.b-ring:nth-child(4) { width: 100px; height: 100px; background: rgba(212,114,26,.04); border: 1px solid rgba(212,114,26,.35); }
+
+.b-center {
+  position: relative; z-index: 2;
+  text-align: center;
+}
+.b-line-1 {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--g4);
+  margin-bottom: 16px;
+}
+.b-cross {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--g4), rgba(212,114,26,.1));
+  margin: 0 auto 20px;
+}
+.b-word {
+  font-family: var(--serif);
+  font-size: 42px;
+  font-weight: 300;
+  font-style: italic;
+  background: var(--nacar-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.b-quote {
+  position: absolute;
+  bottom: 52px;
+  left: 48px; right: 48px;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(250,248,242,.28);
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Panel derecho — claro / nácar */
+.bodas-right {
+  background: var(--w2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 72px;
+  position: relative;
+}
+.bodas-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg,
+    rgba(212,114,26,.06),
+    rgba(245,174,82,.03) 50%,
+    rgba(184,92,14,.05));
+  pointer-events: none;
+}
+
+.b-eyebrow {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--g4);
+  margin-bottom: 24px;
+}
+.b-title {
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.b-title em {
+  font-style: italic;
+  color: var(--g4);
+}
+.b-divider {
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, var(--g4), rgba(212,114,26,.2));
+  margin-bottom: 32px;
+}
+.b-desc {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(12,11,9,.55);
+  max-width: 380px;
+  margin-bottom: 36px;
+}
+.b-list {
+  list-style: none;
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.b-list li {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: rgba(12,11,9,.6);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.b-list li::before {
+  content: '';
+  width: 18px; height: 1px;
+  background: linear-gradient(to right, var(--g4), var(--g2));
+  flex-shrink: 0;
+}
+.b-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 36px;
+  background: #FFFFFF;
+  color: var(--g2);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s;
+}
+.b-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--nacar);
+  transform: translateX(-101%);
+  transition: transform .5s var(--ease);
+}
+.b-btn:hover::before { transform: translateX(0); }
+.b-btn:hover { transform: translateY(-2px); color: var(--ink); }
+.b-btn span { position: relative; z-index: 1; }
+
+/* ==============================================
+   CONTACTO
+   ============================================== */
+#contacto {
+  padding: 130px 0;
+  background: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+#contacto::before {
+  content: '360';
+  position: absolute;
+  right: -30px; bottom: -60px;
+  font-family: var(--serif);
+  font-size: 340px;
+  font-weight: 600;
+  color: rgba(250,248,242,.012);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.ct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 100px;
+  position: relative; z-index: 1;
+}
+
+.ct-detail { margin-bottom: 32px; }
+.ct-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--g1);
+  margin-bottom: 8px;
+}
+.ct-value {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 400;
+  font-style: italic;
+  color: #1A1410;
+}
+
+/* Redes sociales */
+.socials {
+  display: flex;
+  gap: 2px;
+  margin-top: 48px;
+}
+.soc {
+  width: 42px; height: 42px;
+  border: 1px solid rgba(212,114,26,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(26,20,16,.35);
+  text-decoration: none;
+  transition: border-color .3s, color .3s, background .3s;
+}
+.soc:hover {
+  border-color: rgba(212,114,26,.45);
+  color: var(--g2);
+  background: rgba(212,114,26,.06);
+}
+.soc svg {
+  width: 14px; height: 14px;
+  fill: currentColor;
+}
+
+/* Formulario */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.form-group { margin-bottom: 24px; }
+.form-label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--g1);
+  margin-bottom: 12px;
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(26,20,16,.12);
+  padding: 11px 0;
+  color: #1A1410;
+  font-family: var(--sans);
+  font-size: 13px;
+  outline: none;
+  transition: border-color .3s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--g1);
+}
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(26,20,16,.18);
+}
+.form-select option { background: #E8E0D0; color: var(--w1); }
+.form-textarea { resize: vertical; min-height: 96px; }
+
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  background: var(--nacar);
+  border: none;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: opacity .3s, transform .25s;
+}
+.form-submit::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,.15);
+  transform: translateX(-110%) skewX(-20deg);
+  transition: transform .6s var(--ease);
+}
+.form-submit:hover::before { transform: translateX(110%) skewX(-20deg); }
+.form-submit:hover { opacity: .9; transform: translateY(-1px); }
+.form-note {
+  text-align: center;
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(26,20,16,.2);
+}
+
+/* ==============================================
+   FOOTER
+   ============================================== */
+footer {
+  background: #E8E0D0;
+  border-top: 1px solid rgba(212,114,26,.1);
+  padding: 52px 64px 28px;
+}
+.ft-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+.ft-nav {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.ft-nav a {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(26,20,16,.3);
+  text-decoration: none;
+  transition: color .3s;
+}
+.ft-nav a:hover { color: var(--g2); }
+.ft-copy {
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 8.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(26,20,16,.15);
+  border-top: 1px solid rgba(212,114,26,.07);
+  padding-top: 24px;
+}
+
+/* ==============================================
+   FLOTANTES
+   ============================================== */
+.float-wa {
+  position: fixed;
+  bottom: 28px; left: 28px;
+  z-index: 400;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.3);
+  text-decoration: none;
+  animation: waPulse 3s ease-in-out infinite;
+  transition: transform .3s;
+}
+.float-wa:hover { transform: scale(1.08); }
+.float-wa svg { width: 22px; height: 22px; }
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.3), 0 0 0 0 rgba(37,211,102,.2); }
+  60%     { box-shadow: 0 4px 20px rgba(37,211,102,.3), 0 0 0 12px rgba(37,211,102,0); }
+}
+
+.float-quote {
+  position: fixed;
+  right: 0; top: 50%;
+  z-index: 400;
+  background: var(--nacar);
+  color: var(--ink);
+  border: none;
+  padding: 12px 13px;
+  cursor: pointer;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: padding .3s;
+}
+.float-quote:hover { padding: 12px 18px; }
+
+/* ==============================================
+   MODAL
+   ============================================== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(20,14,8,.93);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--w2);
+  color: var(--ink);
+  padding: 52px;
+  max-width: 500px; width: 92%;
+  position: relative;
+  transform: translateY(22px) scale(.97);
+  transition: transform .45s var(--ease);
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+.modal-close {
+  position: absolute; top: 18px; right: 20px;
+  background: none; border: none;
+  font-size: 18px; font-family: var(--serif);
+  color: rgba(12,11,9,.35); cursor: pointer;
+  transition: color .3s;
+}
+.modal-close:hover { color: var(--g4); }
+
+.modal-tag {
+  font-family: var(--sans);
+  font-size: 8px; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--g4);
+  margin-bottom: 10px;
+}
+.modal-title {
+  font-family: var(--serif);
+  font-size: 34px; font-weight: 400;
+  line-height: 1.1; color: var(--ink);
+  margin-bottom: 36px;
+}
+
+.m-label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 8px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--g4);
+  margin-bottom: 10px;
+}
+.m-input, .m-select {
+  width: 100%; background: transparent;
+  border: none; border-bottom: 1px solid rgba(12,11,9,.15);
+  padding: 11px 0; color: var(--ink);
+  font-family: var(--sans); font-size: 13px;
+  outline: none; transition: border-color .3s;
+  appearance: none; margin-bottom: 22px;
+}
+.m-input:focus, .m-select:focus { border-color: var(--g4); }
+.m-input::placeholder { color: rgba(12,11,9,.28); }
+.m-select option { background: #fff; color: var(--ink); }
+.m-btn {
+  width: 100%;
+  padding: 16px;
+  background: #FFFFFF;
+  color: var(--g2);
+  border: none;
+  font-family: var(--sans); font-size: 10px;
+  letter-spacing: 4px; text-transform: uppercase;
+  font-weight: 500; cursor: pointer;
+  transition: background .3s, transform .25s;
+  position: relative; overflow: hidden;
+}
+.m-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--nacar);
+  transform: translateX(-101%);
+  transition: transform .5s var(--ease);
+}
+.m-btn:hover::before { transform: translateX(0); }
+.m-btn:hover { color: var(--ink); transform: translateY(-1px); }
+.m-btn span { position: relative; z-index: 1; }
+
+/* ==============================================
+   TOAST
+   ============================================== */
+.toast {
+  position: fixed; top: 88px; right: 0; z-index: 700;
+  background: var(--w1); color: var(--ink);
+  padding: 20px 28px; max-width: 300px;
+  border-left: 2px solid var(--g1);
+  transform: translateX(110%);
+  transition: transform .5s var(--ease);
+}
+.toast.show { transform: translateX(-28px); }
+.toast-title {
+  font-family: var(--sans); font-size: 8px;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--g4); margin-bottom: 6px;
+}
+.toast-msg {
+  font-family: var(--sans); font-size: 12px;
+  line-height: 1.6; color: rgba(12,11,9,.55);
+}
+
+/* ==============================================
+   RESPONSIVE
+   ============================================== */
+@media (max-width: 1200px) {
+  #inicio { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 100px 48px 80px; justify-content: center; }
+  .srv-grid { grid-template-columns: 1fr 1fr; }
+  #bodas { grid-template-columns: 1fr; }
+  .bodas-left { /* dark contrast panel */ min-height: 340px; padding: 60px; }
+  .ct-grid { grid-template-columns: 1fr; gap: 60px; }
+  .mosaic { grid-template-columns: 1fr 1fr; }
+  .mc.tall { grid-row: auto; }
+}
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-hbg { display: flex; }
+  #nav { padding: 0 24px; }
+  .section-wrap { padding: 0 28px; }
+  .gal-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .gal-note { text-align: left; max-width: 100%; }
+  footer { padding: 44px 28px 24px; }
+  .ft-row { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  .srv-grid { grid-template-columns: 1fr; }
+  .mosaic { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-left { padding: 80px 24px 60px; }
+  .bodas-right { padding: 60px 28px; }
+  #servicios, #galeria, #contacto { padding: 80px 0; }
+  .float-quote { display: none; }
+  .srv-header { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================
+     WHATSAPP FLOTANTE
+     ================================================ -->
+<a class="float-wa"
+   href="https://wa.me/56912345678?text=Hola%20Golden%20360%20IQQ%2C%20me%20interesa%20cotizar"
+   target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- BOTÓN LATERAL PRESUPUESTO -->
+<button class="float-quote" onclick="openModal()">Solicitar Presupuesto</button>
+
+<!-- DRAWER MÓVIL -->
+<div class="drawer" id="drawer">
+  <a href="#inicio"    onclick="closeDrawer()">Inicio</a>
+  <a href="#servicios" onclick="closeDrawer()">Servicios</a>
+  <a href="#galeria"   onclick="closeDrawer()">Galería</a>
+  <a href="#bodas"     onclick="closeDrawer()">Bodas</a>
+  <a href="#contacto"  onclick="closeDrawer()">Contacto</a>
+</div>
+
+<!-- ================================================
+     NAVEGACIÓN
+     ================================================ -->
+<nav id="nav">
+  <a href="#inicio" class="logo">
+    <span class="logo-main">Golden <span>360°</span></span>
+    <span class="logo-sub">IQQ &nbsp;·&nbsp; Cabina 360 &nbsp;·&nbsp; Fotos &nbsp;·&nbsp; Robots LED &nbsp;·&nbsp; Cabezones</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#bodas">Bodas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+
+  <button class="nav-cta" onclick="openModal()">Cotizar Ahora</button>
+  <button class="nav-hbg" id="hbg" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ================================================
+     HERO
+     ================================================ -->
+<section id="inicio">
+
+  <!-- Columna izquierda -->
+  <div class="hero-left">
+    <div class="hero-eyebrow" id="hEye">
+      Iquique · Chile &nbsp;·&nbsp; Eventos & Celebraciones
+    </div>
+
+    <h1 class="hero-title">
+      <span class="ln" style="transition-delay:.08s">Crea</span>
+      <span class="ln ln-nacar" style="transition-delay:.20s">Momentos</span>
+      <span class="ln ln-italic" style="transition-delay:.32s">Increíbles.</span>
+    </h1>
+
+    <div class="hero-divider" id="hDiv"></div>
+
+    <p class="hero-sub" id="hSub">
+      Bienvenidos al sitio oficial de <strong>Golden 360 IQQ</strong>.<br>
+      Cabina 360°, Cabina de Fotos, Robots LED y Cabezones Party para bodas, eventos corporativos y celebraciones únicas en Iquique.
+    </p>
+
+    <div class="hero-actions" id="hAct">
+      <a href="#servicios" class="btn-primary">
+        Ver Servicios
+        <svg width="13" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 5h12M8 1l4 4-4 4"/></svg>
+      </a>
+      <button class="btn-secondary" onclick="openModal()">Solicitar Cotización</button>
+    </div>
+
+    <div class="hero-stats" id="hSts">
+      <div>
+        <div class="stat-n">4</div>
+        <div class="stat-l">Servicios</div>
+      </div>
+      <div>
+        <div class="stat-n">360°</div>
+        <div class="stat-l">Cobertura</div>
+      </div>
+      <div>
+        <div class="stat-n">IQQ</div>
+        <div class="stat-l">Iquique</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna derecha — arte -->
+  <div class="hero-right">
+    <div class="hero-art">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="medallion">
+        <div class="med-num">360<span class="med-sup">°</span></div>
+        <div class="med-lbl">Golden IQQ</div>
+      </div>
+    </div>
+
+    <!-- Tarjeta 1: Cabina 360 -->
+    <div class="svc-card sc-tl">
+      <div class="svc-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <div class="svc-card-name">Cabina 360°</div>
+      <div class="svc-card-desc">Slow Motion · HD</div>
+    </div>
+
+    <!-- Tarjeta 2: Cabina Fotos -->
+    <div class="svc-card sc-tr">
+      <div class="svc-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="15" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 6l1.5-2h3L15 6"/></svg>
+      </div>
+      <div class="svc-card-name">Cabina de Fotos</div>
+      <div class="svc-card-desc">Impresión Instant.</div>
+    </div>
+
+    <!-- Tarjeta 3: Robot LED -->
+    <div class="svc-card sc-bl">
+      <div class="svc-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="7" y="10" width="10" height="10" rx="1"/><path d="M9 10V8a3 3 0 016 0v2"/><path d="M9 14h.01M15 14h.01M12 14v3"/><path d="M3 16h2M19 16h2"/></svg>
+      </div>
+      <div class="svc-card-name">Robots LED</div>
+      <div class="svc-card-desc">Iluminación · Show</div>
+    </div>
+
+    <!-- Tarjeta 4: Cabezones -->
+    <div class="svc-card sc-br">
+      <div class="svc-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M3 21c0-4 3.6-7 9-7s9 3 9 7"/></svg>
+      </div>
+      <div class="svc-card-name">Cabezones Party</div>
+      <div class="svc-card-desc">Personalizado</div>
+    </div>
+
+    <div class="hero-corner">Golden 360 IQQ · Iquique · 2025</div>
+  </div>
+
+</section>
+
+<!-- ================================================
+     BANDA
+     ================================================ -->
+<div class="band" aria-hidden="true">
+  <div class="band-track">
+    <span class="band-item">Cabina 360° <span class="band-sep"></span></span>
+    <span class="band-item">Cabina de Fotos <span class="band-sep"></span></span>
+    <span class="band-item">Robots LED <span class="band-sep"></span></span>
+    <span class="band-item">Cabezones Party <span class="band-sep"></span></span>
+    <span class="band-item">Slow Motion 120fps <span class="band-sep"></span></span>
+    <span class="band-item">Full HD 1080p <span class="band-sep"></span></span>
+    <span class="band-item">Golden 360 IQQ <span class="band-sep"></span></span>
+    <span class="band-item">Iquique · Chile <span class="band-sep"></span></span>
+    <!-- duplicado para loop continuo -->
+    <span class="band-item">Cabina 360° <span class="band-sep"></span></span>
+    <span class="band-item">Cabina de Fotos <span class="band-sep"></span></span>
+    <span class="band-item">Robots LED <span class="band-sep"></span></span>
+    <span class="band-item">Cabezones Party <span class="band-sep"></span></span>
+    <span class="band-item">Slow Motion 120fps <span class="band-sep"></span></span>
+    <span class="band-item">Full HD 1080p <span class="band-sep"></span></span>
+    <span class="band-item">Golden 360 IQQ <span class="band-sep"></span></span>
+    <span class="band-item">Iquique · Chile <span class="band-sep"></span></span>
+  </div>
+</div>
+
+<!-- ================================================
+     SERVICIOS
+     ================================================ -->
+<section id="servicios">
+  <div class="section-wrap">
+
+    <div class="srv-header">
+      <div class="rv">
+        <div class="s-eyebrow">Nuestros Servicios</div>
+        <h2 class="s-title">Todo para un<br>evento <em>Inolvidable</em></h2>
+      </div>
+      <div class="rv d1">
+        <div class="s-bar"></div>
+        <p class="s-body">Somos especialistas en entretenimiento visual para eventos en Iquique. Cada servicio está diseñado para que tus invitados vivan una experiencia única que querrán compartir de inmediato.</p>
+      </div>
+    </div>
+
+    <div class="srv-grid">
+
+      <!-- 01 Cabina 360 -->
+      <div class="srv-item rv">
+        <div class="srv-num">01</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <span class="srv-badge">Más Popular</span>
+        <div class="srv-name">Cabina 360°</div>
+        <p class="srv-desc">Una plataforma giratoria que captura a tus invitados desde todos los ángulos. Videos épicos en slow motion que se comparten al instante en redes sociales. El show del evento, garantizado.</p>
+        <ul class="srv-features">
+          <li>Video Slow Motion 120fps</li>
+          <li>Efectos especiales en vivo</li>
+          <li>Compartir instantáneo en redes</li>
+          <li>Full HD 1080p</li>
+        </ul>
+        <button class="srv-cta" onclick="openModal()">
+          Cotizar
+          <svg viewBox="0 0 14 10" width="12" height="10"><path d="M1 5h12M8 1l4 4-4 4" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- 02 Cabina de Fotos -->
+      <div class="srv-item rv d1">
+        <div class="srv-num">02</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="15" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 6l1.5-2h3L15 6"/></svg>
+        </div>
+        <span class="srv-badge">Elegante</span>
+        <div class="srv-name">Cabina de Fotos</div>
+        <p class="srv-desc">Cabina premium con impresión instantánea. Fondos personalizados, filtros y marcos diseñados para tu evento. Cada invitado se lleva un recuerdo físico único y de alta calidad.</p>
+        <ul class="srv-features">
+          <li>Impresión instantánea</li>
+          <li>Fondos y marcos personalizados</li>
+          <li>Fotos digitales incluidas</li>
+          <li>Props y accesorios</li>
+        </ul>
+        <button class="srv-cta" onclick="openModal()">
+          Cotizar
+          <svg viewBox="0 0 14 10" width="12" height="10"><path d="M1 5h12M8 1l4 4-4 4" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- 03 Robots LED -->
+      <div class="srv-item rv d2">
+        <div class="srv-num">03</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24"><rect x="7" y="10" width="10" height="10" rx="1"/><path d="M9 10V8a3 3 0 016 0v2"/><path d="M9 14h.01M15 14h.01M12 14v3"/><path d="M3 16h2M19 16h2"/></svg>
+        </div>
+        <span class="srv-badge">Espectacular</span>
+        <div class="srv-name">Robots LED</div>
+        <p class="srv-desc">Robots iluminados de cuerpo completo que interactúan con tus invitados, entregan sorpresas o protagonizan el show de la noche. El elemento sorpresa que nadie espera pero todos recuerdan.</p>
+        <ul class="srv-features">
+          <li>Iluminación LED personalizable</li>
+          <li>Interacción con invitados</li>
+          <li>Disponible en varios colores</li>
+          <li>Operador incluido</li>
+        </ul>
+        <button class="srv-cta" onclick="openModal()">
+          Cotizar
+          <svg viewBox="0 0 14 10" width="12" height="10"><path d="M1 5h12M8 1l4 4-4 4" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <!-- 04 Cabezones -->
+      <div class="srv-item rv d3">
+        <div class="srv-num">04</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M3 21c0-4 3.6-7 9-7s9 3 9 7"/></svg>
+        </div>
+        <span class="srv-badge">Diversión Total</span>
+        <div class="srv-name">Cabezones Party</div>
+        <p class="srv-desc">Cabezones gigantes personalizados con los rostros de los protagonistas del evento. El accesorio más fotografiado de cualquier fiesta. Garantizan risas, fotos increíbles y momentos únicos.</p>
+        <ul class="srv-features">
+          <li>Diseño 100% personalizado</li>
+          <li>Alta calidad y acabado</li>
+          <li>Perfectos para fotos y video</li>
+          <li>Entrega previa al evento</li>
+        </ul>
+        <button class="srv-cta" onclick="openModal()">
+          Cotizar
+          <svg viewBox="0 0 14 10" width="12" height="10"><path d="M1 5h12M8 1l4 4-4 4" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     GALERÍA
+     ================================================ -->
+<section id="galeria">
+  <div class="section-wrap">
+
+    <div class="gal-header rv">
+      <div>
+        <div class="s-eyebrow">Nuestro Trabajo</div>
+        <h2 class="s-title">Algunas<br><em>Experiencias</em></h2>
+      </div>
+      <p class="gal-note">Una selección de los eventos más memorables que hemos inmortalizado en Iquique y la región.</p>
+    </div>
+
+    <div class="mosaic rv">
+
+      <!-- Celda grande -->
+      <div class="mc tall">
+        <div class="mc-bg">
+          <div class="mc-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="mc-overlay"></div>
+        <div class="mc-play">
+          <div class="play-ring">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="#E8C87A"/></svg>
+          </div>
+        </div>
+        <div class="mc-info">
+          <span class="mc-title">Matrimonio<br>Iquique 2024</span>
+          <span class="mc-tag">Cabina 360°</span>
+        </div>
+      </div>
+
+      <!-- Celda 2 -->
+      <div class="mc">
+        <div class="mc-bg">
+          <div class="mc-icon">
+            <svg viewBox="0 0 24 24"><rect x="7" y="10" width="10" height="10" rx="1"/><path d="M9 10V8a3 3 0 016 0v2"/><path d="M3 16h2M19 16h2"/></svg>
+          </div>
+        </div>
+        <div class="mc-overlay"></div>
+        <div class="mc-play"><div class="play-ring"><svg viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="#E8C87A"/></svg></div></div>
+        <div class="mc-info">
+          <span class="mc-title">Gala Corporativa</span>
+          <span class="mc-tag">Robot LED</span>
+        </div>
+      </div>
+
+      <!-- Celda 3 -->
+      <div class="mc">
+        <div class="mc-bg">
+          <div class="mc-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M3 21c0-4 3.6-7 9-7s9 3 9 7"/></svg>
+          </div>
+        </div>
+        <div class="mc-overlay"></div>
+        <div class="mc-play"><div class="play-ring"><svg viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="#E8C87A"/></svg></div></div>
+        <div class="mc-info">
+          <span class="mc-title">Quinceaños</span>
+          <span class="mc-tag">Cabezones</span>
+        </div>
+      </div>
+
+      <!-- Celda 4 -->
+      <div class="mc">
+        <div class="mc-bg">
+          <div class="mc-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="15" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 6l1.5-2h3L15 6"/></svg>
+          </div>
+        </div>
+        <div class="mc-overlay"></div>
+        <div class="mc-play"><div class="play-ring"><svg viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="#E8C87A"/></svg></div></div>
+        <div class="mc-info">
+          <span class="mc-title">Fiesta Temática</span>
+          <span class="mc-tag">Cabina de Fotos</span>
+        </div>
+      </div>
+
+      <!-- Celda 5 -->
+      <div class="mc">
+        <div class="mc-bg">
+          <div class="mc-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+          </div>
+        </div>
+        <div class="mc-overlay"></div>
+        <div class="mc-play"><div class="play-ring"><svg viewBox="0 0 16 16" fill="none"><path d="M4 3l9 5-9 5V3z" fill="#E8C87A"/></svg></div></div>
+        <div class="mc-info">
+          <span class="mc-title">Evento VIP</span>
+          <span class="mc-tag">Pack Completo</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Miniaturas -->
+    <div class="thumbs-row rv">
+      <div class="thumb" data-t="Boda">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l7.78 7.78 7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      </div>
+      <div class="thumb" data-t="Graduación">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      </div>
+      <div class="thumb" data-t="Cumpleaños">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      </div>
+      <div class="thumb" data-t="Empresa">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      </div>
+      <div class="thumb" data-t="Aniversario">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+      </div>
+      <div class="thumb" data-t="XV Años">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      </div>
+      <div class="thumb" data-t="Lanzamiento">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      </div>
+      <div class="thumb" data-t="VIP">
+        <div class="thumb-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================
+     BODAS & EVENTOS
+     ================================================ -->
+<section id="bodas">
+
+  <!-- Panel izquierdo artístico -->
+  <div class="bodas-left">
+    <div class="b-rings">
+      <div class="b-ring"></div>
+      <div class="b-ring"></div>
+      <div class="b-ring"></div>
+      <div class="b-ring"></div>
+    </div>
+    <div class="b-center">
+      <div class="b-line-1">Golden 360 IQQ</div>
+      <div class="b-cross"></div>
+      <div class="b-word">Matrimonios</div>
+    </div>
+    <p class="b-quote">
+      El día más especial de tu vida merece ser recordado desde todos los ángulos.
+    </p>
+  </div>
+
+  <!-- Panel derecho — contenido -->
+  <div class="bodas-right rv">
+    <div class="b-eyebrow">Especialidad Premium</div>
+    <h2 class="b-title">Para<br><em>Matrimonios</em></h2>
+    <div class="b-divider"></div>
+    <p class="b-desc">Transforma tu boda en un espectáculo visual. Combinamos Cabina 360°, Cabina de Fotos, Robots LED y Cabezones para que cada momento quede grabado para siempre y tus invitados lo compartan al instante.</p>
+    <ul class="b-list">
+      <li>Packs combinados con descuento especial para bodas</li>
+      <li>Video 360° personalizado con nombres de los novios</li>
+      <li>Impresión instantánea con marcos de boda exclusivos</li>
+      <li>Asistente técnico dedicado durante todo el evento</li>
+      <li>Galería digital privada entregada en 24 horas</li>
+      <li>Montaje y desmontaje sin costo adicional</li>
+    </ul>
+    <button class="b-btn" onclick="openModal()">
+      <span>Cotizar mi Boda &nbsp;→</span>
+    </button>
+  </div>
+
+</section>
+
+<!-- ================================================
+     CONTACTO
+     ================================================ -->
+<section id="contacto">
+  <div class="section-wrap">
+    <div class="ct-grid">
+
+      <!-- Info -->
+      <div class="rv">
+        <div class="s-eyebrow">Hablemos</div>
+        <h2 class="s-title">Solicita tu<br><em>Cotización</em></h2>
+        <div class="s-bar"></div>
+
+        <div class="ct-detail">
+          <div class="ct-label">WhatsApp / Teléfono</div>
+          <div class="ct-value">+56 9 1234 5678</div>
+        </div>
+        <div class="ct-detail">
+          <div class="ct-label">Email</div>
+          <div class="ct-value">hola@golden360iqq.cl</div>
+        </div>
+        <div class="ct-detail">
+          <div class="ct-label">Ciudad</div>
+          <div class="ct-value">Iquique, Chile</div>
+        </div>
+
+        <div class="socials">
+          <a class="soc" href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+          <a class="soc" href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="rv d1">
+        <div class="form-row">
+          <div>
+            <label class="form-label">Nombre completo</label>
+            <input class="form-input" type="text" placeholder="Tu nombre" id="fN">
+          </div>
+          <div>
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="tu@email.com" id="fE">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label">Teléfono</label>
+            <input class="form-input" type="tel" placeholder="+56 9 XXXX XXXX" id="fT">
+          </div>
+          <div>
+            <label class="form-label">Servicio de Interés</label>
+            <select class="form-select" id="fS">
+              <option value="">Selecciona...</option>
+              <option>Cabina 360°</option>
+              <option>Cabina de Fotos</option>
+              <option>Robot LED</option>
+              <option>Cabezones Party</option>
+              <option>Pack Completo</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de Evento</label>
+          <select class="form-select" id="fEv">
+            <option value="">Selecciona...</option>
+            <option>Matrimonio</option>
+            <option>Evento Corporativo</option>
+            <option>Quinceaños</option>
+            <option>Cumpleaños</option>
+            <option>Graduación</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Fecha del Evento</label>
+          <input class="form-input" type="date" id="fF">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensaje</label>
+          <textarea class="form-textarea" placeholder="Cuéntanos más sobre tu evento..." id="fM" rows="3"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitMain()">Enviar Solicitud de Cotización</button>
+        <p class="form-note">Respondemos en menos de 24 horas &nbsp;·&nbsp; Sin compromiso</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     FOOTER
+     ================================================ -->
+<footer>
+  <div class="ft-row">
+    <a href="#inicio" class="logo" style="text-decoration:none;">
+      <span class="logo-main">Golden <span>360°</span></span>
+      <span class="logo-sub">IQQ &nbsp;·&nbsp; Cabina 360 &nbsp;·&nbsp; Fotos &nbsp;·&nbsp; Robots LED &nbsp;·&nbsp; Cabezones</span>
+    </a>
+    <nav class="ft-nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#bodas">Bodas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+  <p class="ft-copy">© 2025 Golden 360 IQQ &nbsp;·&nbsp; Iquique, Chile &nbsp;·&nbsp; Todos los derechos reservados</p>
+</footer>
+
+<!-- ================================================
+     MODAL COTIZACIÓN
+     ================================================ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <div class="modal-tag">Cotización Express</div>
+    <h2 class="modal-title">Tu evento<br>empieza aquí</h2>
+
+    <label class="m-label">Nombre</label>
+    <input class="m-input" type="text" placeholder="Tu nombre completo" id="mN">
+
+    <label class="m-label">WhatsApp</label>
+    <input class="m-input" type="tel" placeholder="+56 9 XXXX XXXX" id="mT">
+
+    <label class="m-label">Servicio</label>
+    <select class="m-select" id="mS">
+      <option value="">Selecciona un servicio...</option>
+      <option>Cabina 360°</option>
+      <option>Cabina de Fotos</option>
+      <option>Robot LED</option>
+      <option>Cabezones Party</option>
+      <option>Pack Completo</option>
+    </select>
+
+    <label class="m-label">Fecha del Evento</label>
+    <input class="m-input" type="date" id="mF">
+
+    <button class="m-btn" onclick="submitModal()"><span>Solicitar Presupuesto</span></button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title">¡Mensaje recibido!</div>
+  <div class="toast-msg">Te contactaremos en menos de 24 horas. ¡Muchas gracias!</div>
+</div>
+
+<!-- ================================================
+     JAVASCRIPT
+     ================================================ -->
+<script>
+/* — NAV scroll — */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('filled', window.scrollY > 60);
+}, { passive: true });
+
+/* — Hamburguesa — */
+const hbg   = document.getElementById('hbg');
+const drawer = document.getElementById('drawer');
+hbg.addEventListener('click', () => {
+  hbg.classList.toggle('open');
+  drawer.classList.toggle('open');
+  document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+});
+function closeDrawer() {
+  hbg.classList.remove('open');
+  drawer.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* — Animación de entrada del hero — */
+window.addEventListener('load', () => {
+  /* Líneas del título */
+  document.querySelectorAll('.hero-title .ln').forEach(ln => {
+    ln.style.transform = 'translateY(0)';
+  });
+  /* Eyebrow */
+  const eye = document.getElementById('hEye');
+  if (eye) { eye.style.opacity = '1'; eye.style.transform = 'none'; }
+  /* Divisor */
+  const div = document.getElementById('hDiv');
+  if (div) { div.style.opacity = '1'; }
+  /* Sub, acciones, stats con delay */
+  [['hSub', 700], ['hAct', 900], ['hSts', 1100]].forEach(([id, delay]) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+    }, delay);
+  });
+});
+
+/* — Scroll reveal — */
+const rvEls = document.querySelectorAll('.rv');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+rvEls.forEach(el => observer.observe(el));
+
+/* — Modal — */
+const overlay = document.getElementById('modalOverlay');
+function openModal()  { overlay.classList.add('open');  document.body.style.overflow = 'hidden'; }
+function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeDrawer(); }
+});
+
+/* — Toast — */
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+
+/* — Submit formulario principal — */
+function submitMain() {
+  const n = document.getElementById('fN').value.trim();
+  const e = document.getElementById('fE').value.trim();
+  if (!n || !e) { alert('Por favor completa nombre y email.'); return; }
+  showToast();
+  ['fN','fE','fT','fS','fEv','fF','fM'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+}
+
+/* — Submit modal — */
+function submitModal() {
+  const n = document.getElementById('mN').value.trim();
+  if (!n) { alert('Por favor ingresa tu nombre.'); return; }
+  closeModal();
+  setTimeout(showToast, 450);
+  ['mN','mT','mS','mF'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+}
+
+/* — Marca el link activo en el nav — */
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 110) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = (a.getAttribute('href') === '#' + current) ? 'var(--g2)' : '';
+  });
+}, { passive: true });
+</script>
+
+</body>
+</html>
